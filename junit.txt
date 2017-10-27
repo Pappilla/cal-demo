@@ -1,0 +1,66 @@
+public class Utility {
+     public int calcAge(int YOB) {
+           if (YOB == 0)
+                return -1;
+           else if (YOB < 0)
+                throw new invalidYOBException(YOB);
+           else if (YOB >= 2014)
+                throw new invalidYOBException(YOB);
+           else
+                return 2014 - YOB;
+     }
+}
+
+class invalidYOBException extends RuntimeException {
+     invalidYOBException(int inp) {
+           super(inp + "");
+     }
+}
+
+
+import static org.JUnit.Assert.assertTrue;
+
+import org.JUnit.After;
+import org.JUnit.Before;
+import org.JUnit.Test;
+
+public class UtilityTests {
+
+     @Before
+     public void setUp() {
+           System.out.println("initialization code");
+     }
+
+     @After
+     public void tearDown() {
+           System.out.println("clean up code");
+     }
+
+     @Test
+     public void calcAgeTest1()// positive test case
+     {
+           int res = new Utility().calcAge(1987);
+           assertTrue(res > 0);
+     }
+
+     @Test
+     public void calcAgeTest2()// negative test case
+     {
+           int res = new Utility().calcAge(0);
+           assertTrue(res == -1);
+     }
+
+     @Test(expected = invalidYOBException.class)
+     public void calcAgeTest3()// negative test case
+     {
+           int res = new Utility().calcAge(-1980);
+           assertTrue(res == -1);
+     }
+
+     @Test(expected = invalidYOBException.class)
+     public void calcAgeTest4()// negative test case
+     {
+           int res = new Utility().calcAge(2016);
+           assertTrue(res == -1);
+     }
+}
