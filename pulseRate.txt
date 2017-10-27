@@ -1,0 +1,80 @@
+class Patient {
+     private int patientId;
+     private String patientName;
+     private String address;
+     private String illness;
+     private int pulseRate;
+     private int maxPulse;
+     private int minPulse;
+     private char patientType;
+     public int getPatientId() {
+           return patientId;
+     }
+     public String getPatientName() {
+           return patientName;
+     }
+     public String getAddress() {
+           return address;
+     }
+     public String getIllness() {
+           return illness;
+     }
+     public char getPatientType(){
+           return patientType;
+     }
+     public Patient(int patientId, String patientName, String address,String illness,char type,int mPulse,int miPulse) {
+           this.patientId = patientId;
+           this.patientName = patientName;
+           this.address = address;
+           this.illness = illness;
+           maxPulse=mPulse;
+           minPulse=miPulse;
+           patientType=type;
+     }
+     public void validateBloodPressure(){
+           int pulse[]=new int[2];
+           pulse[0]=130;
+           pulse[1]=80;
+           if(maxPulse>=pulse[0] || minPulse<=pulse[1]){
+                System.out.println("Treatment for fluctuation in Blood pressure");
+           }
+           else{
+                System.out.println("Blood presssure is normal");
+           }
+     }
+}
+class Bill{
+     private Patient;
+     private double amount;
+     public Bill(Patient patient){
+           this.patient=patient;
+     }
+     public double getAmount(){
+           return amount;
+     }
+     public Patient getPatient(){
+           return patient;
+     }
+     public void computeBill(){
+           switch(patient.getPatientType()){
+                case 'O':System.out.println("Treatment and computation of bill for outpatient");
+                           break;
+                case 'I':System.out.println("Treatment and computation of bill for hospitalized patients");
+                           break;
+                }
+           System.out.println("Patient id:"+patient.getPatientId());
+           System.out.println("Patient Name:"+patient.getPatientName());
+           System.out.println("Patient Address:"+patient.getAddress());
+           System.out.println("Patient Illness:"+patient.getIllness());
+           System.out.println("Patient type:"+patient.getPatientType());
+           patient.validateBloodPressure();
+           System.out.println("Amount to be paid by the patient:"+amount);
+     }
+}
+class Demo{
+     public static void main(String args[]){
+           Patient patient=new Patient(1001,"Esposito","California","Asthma",'I',90,120);
+           Bill obj=new Bill(patient);
+           obj.computeBill();
+     }
+}
